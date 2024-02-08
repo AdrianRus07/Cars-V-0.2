@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>All cars</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.5.1/css/all.css} "/>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-primary btn-block" href="/cars/add">Add Car</a>
+        </div>
+        <div class="col-md-6">
+            <!-- Search Bar -->
+            <form action="/cars/search" method="get">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search by Name" name="name" th:value="${name}">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </form>
+            <!-- End of Search Bar -->
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Data Fabricatiei</th>
+                        <th>Name</th>
+                        <th>Seria Masinii</th>
+                        <th>Tip Motorizare</th>
+                        <th>Price</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="car : ${carsThymeleaf}">
+                        <td th:text="${car.id}"></td>
+                        <td th:text="${car.fabricationYear}"></td>
+                        <td th:text="${car.name}"></td>
+                        <td th:text="${car.series}"></td>
+                        <td th:text="${car.motorType}"></td>
+                        <td th:text="${car.price}"></td>
+                        <td>
+                            <a th:href="@{'/cars/delete/' + ${car.id}}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                        <td>
+                            <a class="fa-sharp fa-solid fa-pen-to-square icon-link icon-link-hover text-decoration-none"
+                               style="--bs-link-hover-color-rgb: 13,202,240;"
+                               th:href="@{'/cars/edit/' + ${car.id}}">
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
+</body>
+</html>

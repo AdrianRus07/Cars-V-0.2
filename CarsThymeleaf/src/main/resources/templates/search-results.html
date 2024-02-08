@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Search Results</h1>
+<ul>
+    <li th:each="car : ${carsThymeleaf}">
+        <span th:text="${car.name}"></span>
+    </li>
+</ul>
+</body>
+</html>
